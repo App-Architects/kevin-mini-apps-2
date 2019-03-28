@@ -2,7 +2,7 @@ import React from 'react';
 
 import Chart from './components/Chart';
 
-const App = () => (
+const App = () =>  (
   <div>
     <Chart />
   </div>
