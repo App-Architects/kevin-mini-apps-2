@@ -15,7 +15,7 @@ class Chart extends Component {
   }
 
   componentDidMount() {
-    axios.get('https://api.coindesk.com/v1/bpi/historical/close.json?start=2019-01-01&end=2019-03-27')
+    axios.get('https://api.coindesk.com/v1/bpi/historical/close.json?start=2018-09-27&end=2019-03-27')
       .then((res) => {
         const data = res.data.bpi;
         const cryptoTime = Object.keys(data);
