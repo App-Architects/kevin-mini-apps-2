@@ -78,17 +78,30 @@ class Chart extends Component {
                 legend: {
                   display: true,
                   labels: {
-                    fontColor: 'white'
+                    fontColor: 'white',
+                    fontSize: 20
                   }
                 },
                 scales: {
                   yAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      labelString: '$USD',
+                      fontColor: 'white',
+                      fontSize: 25
+                    },
                     ticks: {
                       fontColor: 'white',
-                      fontSize: 20
+                      fontSize: 20,
                     }
                   }],
                   xAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'DATE',
+                      fontColor: 'white',
+                      fontSize: 25
+                    },
                     ticks: {
                       fontColor: 'white',
                       fontSize: 20
