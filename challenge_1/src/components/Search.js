@@ -25,6 +25,7 @@ class Search extends Component {
     }
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -32,6 +33,24 @@ class Search extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+  }
+
+  handleKeyPress(e) {
+    const { keyword } = this.state;
+
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      axios.get(`/events?q=${keyword}`)
+      .then((res) => {
+        const data = res.data;
+        this.setState({
+          records: data
+        })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
   }
 
   handleSubmit(e) {
@@ -77,6 +96,7 @@ class Search extends Component {
             placeholder='insert keyword'
             value={keyword}
             onChange={this.handleChange}
+            onKeyPress={this.handleKeyPress}
             style={{ paddingLeft:20 }}
             >
             </Form.Field>
