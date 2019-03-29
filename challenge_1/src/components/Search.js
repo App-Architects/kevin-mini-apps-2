@@ -5,8 +5,10 @@ import {
   Grid,
   Form,
   Button,
+  Container,
   GridRow,
   GridColumn,
+  Image,
   List
 } from 'semantic-ui-react';
 
@@ -63,7 +65,10 @@ class Search extends Component {
     const { keyword, records } = this.state;
     return (
       <Grid>
-        <GridRow>
+        <GridRow centered>
+          <Image src='https://s3.amazonaws.com/moodappmvp/miniapps/world.jpg' size='huge'/>
+        </GridRow>
+        <GridRow centered>
           <GridColumn width={4} style={{ paddingLeft: 30 }}>
             <Form size='massive'>
             <Form.Field
@@ -77,7 +82,9 @@ class Search extends Component {
             </Form.Field>
             </Form>
             <br />
-            <Button type='submit' onClick={this.handleSubmit} size='big'>Search</Button>
+            <Container textAlign='center'>
+            <Button primary type='submit' onClick={this.handleSubmit} size='big'>Search</Button>
+            </Container>
           </GridColumn>
         </GridRow>
         <GridRow>
