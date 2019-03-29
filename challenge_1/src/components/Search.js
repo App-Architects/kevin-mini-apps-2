@@ -1,7 +1,15 @@
 import React, { Component} from 'react';
 import axios from 'axios';
 
-import { Grid, Form, Button, GridRow, GridColumn } from 'semantic-ui-react';
+import {
+  Grid,
+  Form,
+  Button,
+  GridRow,
+  GridColumn,
+  List
+} from 'semantic-ui-react';
+
 
 class Search extends Component {
   constructor(props) {
@@ -31,7 +39,9 @@ class Search extends Component {
     axios.get(`/events?q=${keyword}`)
     .then((res) => {
       const data = res.data;
-      console.log(data);
+      this.setState({
+        records: data
+      })
     })
     .catch((error) => {
       console.log(error);
@@ -50,11 +60,11 @@ class Search extends Component {
   }
 
   render() {
-    const { keyword } = this.state;
+    const { keyword, records } = this.state;
     return (
       <Grid>
         <GridRow>
-          <GridColumn width={4}>
+          <GridColumn width={4} style={{ paddingLeft: 30 }}>
             <Form size='massive'>
             <Form.Field
             control='input'
@@ -62,11 +72,32 @@ class Search extends Component {
             placeholder='insert keyword'
             value={keyword}
             onChange={this.handleChange}
+            style={{ paddingLeft:20 }}
             >
             </Form.Field>
             </Form>
             <br />
             <Button type='submit' onClick={this.handleSubmit} size='big'>Search</Button>
+          </GridColumn>
+        </GridRow>
+        <GridRow>
+          <GridColumn>
+          {records.map(record =>
+        <List key={records.indexOf(record)} size="massive" style={{ paddingLeft: 20 }}>
+        <List.Item>
+          <List.Icon name='globe' />
+          <List.Content>{record.category2}</List.Content>
+        </List.Item>
+        <List.Item>
+          <List.Icon name='calendar alternate outline' />
+          <List.Content>{record.date}</List.Content>
+        </List.Item>
+        <List.Item>
+          <List.Icon name='write' />
+          <List.Content>{record.description}</List.Content>
+        </List.Item>
+        </List>
+        )}
           </GridColumn>
         </GridRow>
       </Grid>
