@@ -91,6 +91,7 @@ class Search extends Component {
   render() {
     const { keyword, recordsLimit, countPage } = this.state;
     return (
+      <div>
       <Grid>
         <GridRow centered>
           <Image src='https://s3.amazonaws.com/moodappmvp/miniapps/world.jpg' size='huge'/>
@@ -118,19 +119,20 @@ class Search extends Component {
             <Button primary type='submit' onClick={this.handleSubmit} size='big'>Search</Button>
             </Container>
             < br />
-            <ReactPaginate
-              // containerClassName='ui container three column grid'
-              previousLabel={<Icon name= 'angle left' size='big'/>}
-              nextLabel={<Icon name= 'angle right' size='big' />}
-              pageCount={countPage}
-              marginPagesDisplayed={10}
-              pageRangeDisplayed={10}
-              onPageChange={this.handlePageClick}
-            />
           </GridColumn>
         </GridRow>
         <GridRow>
-          <GridColumn>
+          <GridColumn width={2}>
+            <ReactPaginate
+                  previousLabel='Previous'
+                  nextLabel='Next'
+                  pageCount={countPage}
+                  marginPagesDisplayed={10}
+                  pageRangeDisplayed={10}
+                  onPageChange={this.handlePageClick}
+                />
+          </GridColumn>
+          <GridColumn width={13}>
           {recordsLimit.map(record =>
             <List key={recordsLimit.indexOf(record)} size="massive" style={{ paddingLeft: 20 }}>
             <List.Item>
@@ -150,6 +152,7 @@ class Search extends Component {
           </GridColumn>
         </GridRow>
       </Grid>
+      </div>
     )
   }
 }
