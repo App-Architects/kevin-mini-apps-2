@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Grid, GridColumn, GridRow, Header, Segment } from 'semantic-ui-react';
+import { GridColumn, GridRow, Header, Segment } from 'semantic-ui-react';
 
 import { Line } from 'react-chartjs-2';
 
@@ -15,7 +15,7 @@ class Chart extends Component {
   }
 
   componentDidMount() {
-    axios.get('https://api.coindesk.com/v1/bpi/historical/close.json?start=2018-09-27&end=2019-03-27')
+    axios.get('https://api.coindesk.com/v1/bpi/historical/close.json?start=2018-09-27&end=2019-04-04')
       .then((res) => {
         const data = res.data.bpi;
         const cryptoTime = Object.keys(data);
@@ -46,7 +46,7 @@ class Chart extends Component {
           borderDash: [],
           borderDashOffset: 0.0,
           borderJoinStyle: 'miter',
-          pointBorderColor: '#1E1EA9',
+          pointBorderColor: '#ffffff',
           pointBackgroundColor: '#fff',
           pointBorderWidth: 5,
           pointHoverRadius: 10,
