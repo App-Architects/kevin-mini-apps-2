@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import config from '../../../config/keys';
-
 import { Form } from 'semantic-ui-react';
 
 class CryptoForm extends Component {
@@ -28,14 +27,18 @@ class CryptoForm extends Component {
 
     if (e.key === 'Enter') {
       e.preventDefault();
-      axios.get(`/v1/quotes/current?filter_symbol_id=${quote}?apikey=${config.api_key}`)
-      .then(res => {
-        const data = res.data;
-        this.setState({
-          crytoData: data
-        })
+      axios.get(`https://coinlib.io/api/v1/coin?key=${config.api_key}&symbol=${quote}`, {
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        }
       })
-      .catch(err => console.log(err));
+        .then(res => {
+          const data = res.data;
+          this.setState({
+            crytoData: data
+          })
+          .catch(err => console.log(err))
+        })
     }
   }
 
@@ -43,6 +46,7 @@ class CryptoForm extends Component {
     const { quote } = this.state;
 
     return (
+      <div>
       <Form size='huge'>
         <Form.Field
           name='quote'
@@ -54,6 +58,7 @@ class CryptoForm extends Component {
           <input />
         </Form.Field>
       </Form>
+      </div>
     )
   }
 }
